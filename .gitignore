@@ -1,3 +1,4 @@
 *.l#*
 *.b#*
 *.s#*
+hw/pcb/pixel/fab_files/*
