@@ -2665,6 +2665,7 @@
 <part name="TVS30" library="wedfestdress" deviceset="PESD5V0X1UB,135" device=""/>
 <part name="GND41" library="wedfestdress" deviceset="GND" device=""/>
 <part name="GND42" library="wedfestdress" deviceset="GND" device=""/>
+<part name="C19" library="wedfestdress" deviceset="CAP_GRM185R61C105KE44D" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3093,16 +3094,16 @@ UART</text>
 <attribute name="DISPLAY" x="91.44" y="83.82" size="1.778" layer="96"/>
 <attribute name="NOSTUFF" x="93.98" y="91.44" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="R19" gate="G$1" x="73.66" y="83.82" smashed="yes" rot="R180">
-<attribute name="VALUE" x="78.74" y="88.9" size="1.778" layer="96" rot="R180"/>
-<attribute name="NAME" x="66.04" y="83.82" size="1.778" layer="95"/>
-<attribute name="DISPLAY" x="76.2" y="83.82" size="1.778" layer="96"/>
-<attribute name="NOSTUFF" x="78.74" y="91.44" size="1.778" layer="96" rot="R180"/>
+<instance part="R19" gate="G$1" x="71.12" y="83.82" smashed="yes" rot="R180">
+<attribute name="VALUE" x="76.2" y="88.9" size="1.778" layer="96" rot="R180"/>
+<attribute name="NAME" x="63.5" y="83.82" size="1.778" layer="95"/>
+<attribute name="DISPLAY" x="73.66" y="83.82" size="1.778" layer="96"/>
+<attribute name="NOSTUFF" x="76.2" y="91.44" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="P+17" gate="1" x="66.04" y="88.9" smashed="yes">
-<attribute name="VALUE" x="63.5" y="88.9" size="1.778" layer="96"/>
+<instance part="P+17" gate="1" x="63.5" y="88.9" smashed="yes">
+<attribute name="VALUE" x="60.96" y="88.9" size="1.778" layer="96"/>
 </instance>
-<instance part="GND26" gate="1" x="96.52" y="78.74"/>
+<instance part="GND26" gate="1" x="99.06" y="73.66"/>
 <instance part="P+18" gate="1" x="106.68" y="104.14" smashed="yes">
 <attribute name="VALUE" x="104.14" y="104.14" size="1.778" layer="96"/>
 </instance>
@@ -3334,6 +3335,12 @@ UART</text>
 </instance>
 <instance part="GND41" gate="1" x="38.1" y="73.66"/>
 <instance part="GND42" gate="1" x="50.8" y="73.66"/>
+<instance part="C19" gate="G$1" x="83.82" y="78.74" smashed="yes" rot="R90">
+<attribute name="VALUE" x="88.9" y="81.28" size="1.778" layer="96" rot="R90"/>
+<attribute name="DISPLAY" x="86.36" y="76.2" size="1.778" layer="96"/>
+<attribute name="NAME" x="86.36" y="78.74" size="1.778" layer="95"/>
+<attribute name="NOSTUFF" x="91.44" y="81.28" size="1.778" layer="96" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -3697,8 +3704,13 @@ UART</text>
 <segment>
 <pinref part="R18" gate="G$1" pin="P$1"/>
 <wire x1="93.98" y1="83.82" x2="96.52" y2="83.82" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="83.82" x2="96.52" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="83.82" x2="99.06" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="99.06" y1="83.82" x2="99.06" y2="76.2" width="0.1524" layer="91"/>
 <pinref part="GND26" gate="1" pin="GND"/>
+<pinref part="C19" gate="G$1" pin="P$2"/>
+<wire x1="88.9" y1="78.74" x2="96.52" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="78.74" x2="96.52" y2="83.82" width="0.1524" layer="91"/>
+<junction x="96.52" y="83.82"/>
 </segment>
 <segment>
 <pinref part="C12" gate="G$1" pin="P$2"/>
@@ -3986,9 +3998,9 @@ UART</text>
 </segment>
 <segment>
 <pinref part="P+17" gate="1" pin="3V3"/>
-<wire x1="66.04" y1="86.36" x2="66.04" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="86.36" x2="63.5" y2="83.82" width="0.1524" layer="91"/>
 <pinref part="R19" gate="G$1" pin="P$2"/>
-<wire x1="66.04" y1="83.82" x2="68.58" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="83.82" x2="66.04" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="P+18" gate="1" pin="3V3"/>
@@ -4944,6 +4956,7 @@ UART</text>
 <segment>
 <pinref part="R19" gate="G$1" pin="P$1"/>
 <pinref part="R18" gate="G$1" pin="P$2"/>
+<wire x1="76.2" y1="83.82" x2="78.74" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="78.74" y1="83.82" x2="81.28" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="83.82" x2="83.82" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="81.28" y1="83.82" x2="81.28" y2="86.36" width="0.1524" layer="91"/>
@@ -4951,6 +4964,10 @@ UART</text>
 <pinref part="U21" gate="G$1" pin="IN+"/>
 <wire x1="81.28" y1="86.36" x2="99.06" y2="86.36" width="0.1524" layer="91"/>
 <label x="83.82" y="86.36" size="1.778" layer="95"/>
+<pinref part="C19" gate="G$1" pin="P$1"/>
+<wire x1="81.28" y1="78.74" x2="78.74" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="78.74" x2="78.74" y2="83.82" width="0.1524" layer="91"/>
+<junction x="78.74" y="83.82"/>
 </segment>
 </net>
 <net name="MIC_AMP_OUT" class="0">

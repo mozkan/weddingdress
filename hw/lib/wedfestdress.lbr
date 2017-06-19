@@ -770,6 +770,14 @@ Footprint according to NXP SOT313-2 specification, however the cornerpins are 0.
 </polygon>
 <text x="-3.81" y="3.81" size="1.016" layer="21" font="vector">&gt;NAME</text>
 </package>
+<package name="POM-5238P-R">
+<circle x="0" y="0" radius="3" width="0.127" layer="51"/>
+<pad name="POS" x="-0.95" y="0" drill="0.6"/>
+<pad name="NEG" x="0.95" y="0" drill="0.6"/>
+<wire x1="-0.95" y1="-1" x2="-0.95" y2="-2" width="0.2" layer="21"/>
+<wire x1="-1.45" y1="-1.5" x2="-0.45" y2="-1.5" width="0.2" layer="21"/>
+<text x="1.75" y="2.75" size="1" layer="21" font="vector">&gt;NAME</text>
+</package>
 </packages>
 <symbols>
 <symbol name="3V3">
@@ -1656,6 +1664,26 @@ Footprint according to NXP SOT313-2 specification, however the cornerpins are 0.
 <text x="-12.7" y="-10.16" size="1.27" layer="94">&gt;DISPLAY</text>
 <text x="-12.7" y="-12.7" size="1.27" layer="94">&gt;NOSTUFF</text>
 </symbol>
+<symbol name="MICROPHONE">
+<circle x="0" y="-1.27" radius="2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="1.27" x2="2.54" y2="-3.81" width="0.635" layer="94"/>
+<pin name="POS" x="-5.08" y="0" visible="off" length="short"/>
+<pin name="NEG" x="-5.08" y="-2.54" visible="off" length="short"/>
+<wire x1="-1.27" y1="-0.635" x2="0" y2="-0.635" width="0.254" layer="94"/>
+<wire x1="0" y1="-0.635" x2="1.27" y2="-0.635" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="-1.905" x2="0" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="0" y1="-1.905" x2="1.27" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="0" y1="-1.905" x2="0" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="0" y1="-2.54" x2="-2.54" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="0" y1="-0.635" x2="0" y2="0" width="0.1524" layer="94"/>
+<wire x1="0" y1="0" x2="-2.54" y2="0" width="0.1524" layer="94"/>
+<wire x1="0.762" y1="0.254" x2="0.762" y2="-0.254" width="0.254" layer="94"/>
+<wire x1="0.508" y1="0" x2="1.016" y2="0" width="0.254" layer="94"/>
+<text x="-2.54" y="2.54" size="1.778" layer="97">&gt;NAME</text>
+<text x="-2.54" y="-7.62" size="1.778" layer="97">&gt;MFG_PART_NO</text>
+<text x="-2.54" y="-10.16" size="1.778" layer="97">&gt;DISPLAY</text>
+<text x="-2.54" y="-12.7" size="1.778" layer="97">&gt;NOSTUFF</text>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="3V3" prefix="P+">
@@ -1680,6 +1708,34 @@ Footprint according to NXP SOT313-2 specification, however the cornerpins are 0.
 <device name="">
 <technologies>
 <technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="CAP_CL10C150JB8NNNC" prefix="C" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="CAP" x="0" y="-2.54"/>
+</gates>
+<devices>
+<device name="" package="CAP_0603">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="COST_X1" value="0.1"/>
+<attribute name="COST_X100" value="0.0126"/>
+<attribute name="COST_X500" value="0.00898"/>
+<attribute name="DESCRIPTION" value="Capacitor, 15 pF, 50V, 0603, C0G/NP0"/>
+<attribute name="DISPLAY" value="15 pF, 50V"/>
+<attribute name="DISTRIBUTOR" value="Digikey"/>
+<attribute name="DIST_PART_NO" value="1276-1296-1-ND"/>
+<attribute name="MFG" value="Samsung"/>
+<attribute name="MFG_PART_NO" value="CL10C150JB8NNNC"/>
+<attribute name="NOSTUFF" value="" constant="no"/>
+<attribute name="PACKAGE" value="0603"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -1917,6 +1973,34 @@ Footprint according to NXP SOT313-2 specification, however the cornerpins are 0.
 <attribute name="MFG_PART_NO" value="PTS810 SJG 250 SMTR LFS"/>
 <attribute name="NOSTUFF" value="" constant="no"/>
 <attribute name="PACKAGE" value="SMT"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="RES_75K_RC0603FR-0775KL" prefix="R" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="RES" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="RES_0603">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="COST_X1" value=".1"/>
+<attribute name="COST_X100" value=".006"/>
+<attribute name="COST_X500" value=".006"/>
+<attribute name="DESCRIPTION" value="Resistor, 75k, 1%, 0603, 100 ppm/C"/>
+<attribute name="DISPLAY" value="75k"/>
+<attribute name="DISTRIBUTOR" value="Digikey"/>
+<attribute name="DIST_PART_NO" value="311-75.0KHRCT-ND"/>
+<attribute name="MFG" value="Yageo"/>
+<attribute name="MFG_PART_NO" value="RC0603FR-0775KL"/>
+<attribute name="NOSTUFF" value="" constant="no"/>
+<attribute name="PACKAGE" value="0603"/>
 </technology>
 </technologies>
 </device>
@@ -3019,6 +3103,90 @@ Footprint according to NXP SOT313-2 specification, however the cornerpins are 0.
 <attribute name="MFG_PART_NO" value="CL-SB-22B-12T"/>
 <attribute name="NOSTUFF" value="" constant="no"/>
 <attribute name="PACKAGE" value="SMT"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="POM-5238P-R" prefix="MIC" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="MICROPHONE" x="5.08" y="0"/>
+</gates>
+<devices>
+<device name="" package="POM-5238P-R">
+<connects>
+<connect gate="G$1" pin="NEG" pad="NEG"/>
+<connect gate="G$1" pin="POS" pad="POS"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="COST_X1" value="2.52"/>
+<attribute name="COST_X100" value="1.332"/>
+<attribute name="COST_X500" value="1.332"/>
+<attribute name="DESCRIPTION" value="Microphone, electret condenser, omnidirectional, -38 dB sensitivity, 20 Hz - 15 kHz, TH"/>
+<attribute name="DISPLAY" value="Electret"/>
+<attribute name="DISTRIBUTOR" value="Digikey"/>
+<attribute name="DIST_PART_NO" value="668-1324-ND"/>
+<attribute name="MFG" value="PUI Audio"/>
+<attribute name="MFG_PART_NO" value="POM-5238P-R"/>
+<attribute name="NOSTUFF" value="" constant="no"/>
+<attribute name="PACKAGE" value="TH"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="RES_49R9_RC0603FR-0749R9L" prefix="R" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="RES" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="RES_0603">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="COST_X1" value="0.1"/>
+<attribute name="COST_X100" value="0.0063"/>
+<attribute name="COST_X500" value="0.00382"/>
+<attribute name="DESCRIPTION" value="Resistor, 49R9, 1%, 0603, 100 ppm/C"/>
+<attribute name="DISPLAY" value="49R9"/>
+<attribute name="DISTRIBUTOR" value="Digikey"/>
+<attribute name="DIST_PART_NO" value="311-49.9HRCT-ND"/>
+<attribute name="MFG" value="Yageo"/>
+<attribute name="MFG_PART_NO" value="RC0603FR-0749R9L"/>
+<attribute name="NOSTUFF" value="" constant="no"/>
+<attribute name="PACKAGE" value="0603"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="CAP_CL10A225KP8NNNC" prefix="C" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="CAP" x="0" y="-2.54"/>
+</gates>
+<devices>
+<device name="" package="CAP_0603">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+<connect gate="G$1" pin="P$2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="COST_X1" value="0.12"/>
+<attribute name="COST_X100" value="0.0408"/>
+<attribute name="COST_X500" value="0.02878"/>
+<attribute name="DESCRIPTION" value="Capacitor, 2.2 uF, 10V, 0603, X5R"/>
+<attribute name="DISPLAY" value="2.2 uF, 10V"/>
+<attribute name="DISTRIBUTOR" value="Digikey"/>
+<attribute name="DIST_PART_NO" value="1276-1085-1-ND"/>
+<attribute name="MFG" value="Samsung"/>
+<attribute name="MFG_PART_NO" value="CL10A225KP8NNNC"/>
+<attribute name="NOSTUFF" value="" constant="no"/>
+<attribute name="PACKAGE" value="0603"/>
 </technology>
 </technologies>
 </device>
