@@ -812,7 +812,9 @@ http://www.ti.com/lit/ug/tidu765/tidu765.pdf</text>
 <attribute name="NOSTUFF" x="101.6" y="106.68" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="GND1" gate="1" x="73.66" y="96.52"/>
-<instance part="P+1" gate="1" x="73.66" y="121.92"/>
+<instance part="P+1" gate="1" x="73.66" y="121.92" smashed="yes">
+<attribute name="VALUE" x="71.12" y="121.92" size="1.778" layer="96"/>
+</instance>
 <instance part="TP1" gate="G$1" x="246.38" y="111.76" smashed="yes">
 <attribute name="NAME" x="248.92" y="109.22" size="1.778" layer="95"/>
 <attribute name="NOSTUFF" x="243.84" y="104.14" size="1.778" layer="96"/>
@@ -826,7 +828,9 @@ http://www.ti.com/lit/ug/tidu765/tidu765.pdf</text>
 <attribute name="NOSTUFF" x="243.84" y="83.82" size="1.778" layer="96"/>
 </instance>
 <instance part="GND2" gate="1" x="241.3" y="83.82"/>
-<instance part="P+2" gate="1" x="241.3" y="116.84"/>
+<instance part="P+2" gate="1" x="241.3" y="116.84" smashed="yes">
+<attribute name="VALUE" x="238.76" y="116.84" size="1.778" layer="96"/>
+</instance>
 <instance part="R2" gate="G$1" x="114.3" y="91.44" smashed="yes" rot="R180">
 <attribute name="VALUE" x="119.38" y="96.52" size="1.778" layer="96" rot="R180"/>
 <attribute name="NAME" x="109.22" y="91.44" size="1.778" layer="95"/>
@@ -846,7 +850,9 @@ http://www.ti.com/lit/ug/tidu765/tidu765.pdf</text>
 <attribute name="NOSTUFF" x="129.54" y="91.44" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="GND3" gate="1" x="132.08" y="71.12"/>
-<instance part="P+3" gate="1" x="106.68" y="96.52"/>
+<instance part="P+3" gate="1" x="106.68" y="96.52" smashed="yes">
+<attribute name="VALUE" x="104.14" y="96.52" size="1.778" layer="96"/>
+</instance>
 <instance part="GND4" gate="1" x="149.86" y="91.44"/>
 <instance part="P+4" gate="1" x="149.86" y="119.38" smashed="yes">
 <attribute name="VALUE" x="147.32" y="119.38" size="1.778" layer="96"/>
