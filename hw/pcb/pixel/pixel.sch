@@ -236,6 +236,17 @@
 &lt;p&gt;1.6 mm Round&lt;/p&gt;</description>
 <smd name="P$1" x="0" y="0" dx="1.6" dy="1.6" layer="1" roundness="100" cream="no"/>
 </package>
+<package name="SOD523">
+<smd name="A" x="-0.55" y="0" dx="0.8" dy="0.6" layer="1"/>
+<smd name="K" x="0.55" y="0" dx="0.8" dy="0.6" layer="1"/>
+<wire x1="-1.1" y1="0.6" x2="-1.1" y2="-0.6" width="0.075" layer="39"/>
+<wire x1="-1.1" y1="-0.6" x2="1.1" y2="-0.6" width="0.075" layer="39"/>
+<wire x1="1.1" y1="-0.6" x2="1.1" y2="0.6" width="0.075" layer="39"/>
+<wire x1="1.1" y1="0.6" x2="-1.1" y2="0.6" width="0.075" layer="39"/>
+<rectangle x1="-0.65" y1="-0.45" x2="0.65" y2="0.45" layer="51"/>
+<wire x1="1.35" y1="0.5" x2="1.35" y2="-0.5" width="0.25" layer="21"/>
+<text x="-1.27" y="1.27" size="1.016" layer="21" font="vector">&gt;NAME</text>
+</package>
 </packages>
 <symbols>
 <symbol name="APA102C">
@@ -260,6 +271,22 @@
 <text x="-2.54" y="2.54" size="1.778" layer="95">&gt;NAME</text>
 <text x="-2.54" y="-5.08" size="1.778" layer="96">&gt;DISPLAY</text>
 <text x="-2.54" y="-7.62" size="1.778" layer="96">&gt;NOSTUFF</text>
+</symbol>
+<symbol name="TVS_UNIDIRECTIONAL">
+<polygon width="0.254" layer="94">
+<vertex x="-1.27" y="0"/>
+<vertex x="0" y="2.54"/>
+<vertex x="1.27" y="0"/>
+</polygon>
+<wire x1="-1.016" y1="2.54" x2="1.016" y2="2.54" width="0.254" layer="94"/>
+<wire x1="1.016" y1="2.54" x2="1.524" y2="2.032" width="0.254" layer="94"/>
+<wire x1="-1.016" y1="2.54" x2="-1.524" y2="3.048" width="0.254" layer="94"/>
+<pin name="K" x="0" y="5.08" visible="off" length="short" rot="R270"/>
+<pin name="A" x="0" y="-2.54" visible="off" length="short" rot="R90"/>
+<text x="2.54" y="5.08" size="1.778" layer="97">&gt;NAME</text>
+<text x="2.54" y="-2.54" size="1.778" layer="97">&gt;MFG_PART_NO</text>
+<text x="2.54" y="-5.08" size="1.778" layer="97">&gt;DISPLAY</text>
+<text x="2.54" y="-7.62" size="1.778" layer="97">&gt;NOSTUFF</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -324,6 +351,34 @@
 </device>
 </devices>
 </deviceset>
+<deviceset name="PESD5V0X1UB,135" prefix="TVS" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="TVS_UNIDIRECTIONAL" x="0" y="-2.54"/>
+</gates>
+<devices>
+<device name="" package="SOD523">
+<connects>
+<connect gate="G$1" pin="A" pad="A"/>
+<connect gate="G$1" pin="K" pad="K"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="COST_X1" value="0.45"/>
+<attribute name="COST_X100" value="0.288"/>
+<attribute name="COST_X500" value="0.22626"/>
+<attribute name="DESCRIPTION" value="TVS diode, 5 Vs, 5.8 Vbr, 8 Vcl, 0.95 pF, 8 kV, 200 mW"/>
+<attribute name="DISPLAY" value="5.8 Vbr"/>
+<attribute name="DISTRIBUTOR" value="Digikey"/>
+<attribute name="DIST_PART_NO" value="1727-5906-1-ND"/>
+<attribute name="MFG" value="NXP"/>
+<attribute name="MFG_PART_NO" value="PESD5V0X1UB,135"/>
+<attribute name="NOSTUFF" value="" constant="no"/>
+<attribute name="PACKAGE" value="SOD523"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </libraries>
@@ -346,6 +401,10 @@
 <part name="TP6" library="wedfestdress" deviceset="TP_1P6_MM_ROUND" device=""/>
 <part name="TP7" library="wedfestdress" deviceset="TP_1P6_MM_ROUND" device=""/>
 <part name="TP8" library="wedfestdress" deviceset="TP_1P6_MM_ROUND" device=""/>
+<part name="TVS1" library="wedfestdress" deviceset="PESD5V0X1UB,135" device=""/>
+<part name="TVS2" library="wedfestdress" deviceset="PESD5V0X1UB,135" device=""/>
+<part name="TVS3" library="wedfestdress" deviceset="PESD5V0X1UB,135" device=""/>
+<part name="TVS4" library="wedfestdress" deviceset="PESD5V0X1UB,135" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -355,37 +414,61 @@
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
 <instance part="FRAME1" gate="G$2" x="172.72" y="0"/>
 <instance part="U1" gate="G$1" x="139.7" y="104.14"/>
-<instance part="TP1" gate="G$1" x="114.3" y="109.22" smashed="yes" rot="R180">
-<attribute name="NAME" x="111.76" y="111.76" size="1.778" layer="95" rot="R180"/>
-<attribute name="NOSTUFF" x="116.84" y="116.84" size="1.778" layer="96" rot="R180"/>
+<instance part="TP1" gate="G$1" x="88.9" y="109.22" smashed="yes" rot="R180">
+<attribute name="NAME" x="86.36" y="111.76" size="1.778" layer="95" rot="R180"/>
+<attribute name="NOSTUFF" x="91.44" y="116.84" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="TP2" gate="G$1" x="114.3" y="106.68" smashed="yes" rot="R180">
-<attribute name="NAME" x="111.76" y="109.22" size="1.778" layer="95" rot="R180"/>
-<attribute name="NOSTUFF" x="116.84" y="114.3" size="1.778" layer="96" rot="R180"/>
+<instance part="TP2" gate="G$1" x="88.9" y="106.68" smashed="yes" rot="R180">
+<attribute name="NAME" x="86.36" y="109.22" size="1.778" layer="95" rot="R180"/>
+<attribute name="NOSTUFF" x="91.44" y="114.3" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="TP3" gate="G$1" x="114.3" y="104.14" smashed="yes" rot="R180">
-<attribute name="NAME" x="111.76" y="106.68" size="1.778" layer="95" rot="R180"/>
-<attribute name="NOSTUFF" x="116.84" y="111.76" size="1.778" layer="96" rot="R180"/>
+<instance part="TP3" gate="G$1" x="88.9" y="104.14" smashed="yes" rot="R180">
+<attribute name="NAME" x="86.36" y="106.68" size="1.778" layer="95" rot="R180"/>
+<attribute name="NOSTUFF" x="91.44" y="111.76" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="TP4" gate="G$1" x="167.64" y="101.6" smashed="yes">
-<attribute name="NAME" x="170.18" y="99.06" size="1.778" layer="95"/>
-<attribute name="NOSTUFF" x="165.1" y="93.98" size="1.778" layer="96"/>
+<instance part="TP4" gate="G$1" x="226.06" y="101.6" smashed="yes">
+<attribute name="NAME" x="228.6" y="99.06" size="1.778" layer="95"/>
+<attribute name="NOSTUFF" x="223.52" y="93.98" size="1.778" layer="96"/>
 </instance>
-<instance part="TP5" gate="G$1" x="167.64" y="104.14" smashed="yes">
-<attribute name="NAME" x="170.18" y="101.6" size="1.778" layer="95"/>
-<attribute name="NOSTUFF" x="165.1" y="96.52" size="1.778" layer="96"/>
+<instance part="TP5" gate="G$1" x="226.06" y="104.14" smashed="yes">
+<attribute name="NAME" x="228.6" y="101.6" size="1.778" layer="95"/>
+<attribute name="NOSTUFF" x="223.52" y="96.52" size="1.778" layer="96"/>
 </instance>
-<instance part="TP6" gate="G$1" x="167.64" y="106.68" smashed="yes">
-<attribute name="NAME" x="170.18" y="104.14" size="1.778" layer="95"/>
-<attribute name="NOSTUFF" x="165.1" y="99.06" size="1.778" layer="96"/>
+<instance part="TP6" gate="G$1" x="226.06" y="106.68" smashed="yes">
+<attribute name="NAME" x="228.6" y="104.14" size="1.778" layer="95"/>
+<attribute name="NOSTUFF" x="223.52" y="99.06" size="1.778" layer="96"/>
 </instance>
-<instance part="TP7" gate="G$1" x="114.3" y="111.76" smashed="yes" rot="R180">
-<attribute name="NAME" x="111.76" y="114.3" size="1.778" layer="95" rot="R180"/>
-<attribute name="NOSTUFF" x="116.84" y="119.38" size="1.778" layer="96" rot="R180"/>
+<instance part="TP7" gate="G$1" x="88.9" y="111.76" smashed="yes" rot="R180">
+<attribute name="NAME" x="86.36" y="114.3" size="1.778" layer="95" rot="R180"/>
+<attribute name="NOSTUFF" x="91.44" y="119.38" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="TP8" gate="G$1" x="167.64" y="99.06" smashed="yes">
-<attribute name="NAME" x="170.18" y="96.52" size="1.778" layer="95"/>
-<attribute name="NOSTUFF" x="165.1" y="91.44" size="1.778" layer="96"/>
+<instance part="TP8" gate="G$1" x="226.06" y="99.06" smashed="yes">
+<attribute name="NAME" x="228.6" y="96.52" size="1.778" layer="95"/>
+<attribute name="NOSTUFF" x="223.52" y="91.44" size="1.778" layer="96"/>
+</instance>
+<instance part="TVS1" gate="G$1" x="93.98" y="88.9" smashed="yes">
+<attribute name="NAME" x="96.52" y="93.98" size="1.778" layer="97"/>
+<attribute name="MFG_PART_NO" x="96.52" y="91.44" size="1.778" layer="97"/>
+<attribute name="DISPLAY" x="96.52" y="88.9" size="1.778" layer="97"/>
+<attribute name="NOSTUFF" x="96.52" y="81.28" size="1.778" layer="97"/>
+</instance>
+<instance part="TVS2" gate="G$1" x="121.92" y="88.9" smashed="yes">
+<attribute name="NAME" x="124.46" y="93.98" size="1.778" layer="97"/>
+<attribute name="MFG_PART_NO" x="124.46" y="91.44" size="1.778" layer="97"/>
+<attribute name="DISPLAY" x="124.46" y="88.9" size="1.778" layer="97"/>
+<attribute name="NOSTUFF" x="124.46" y="81.28" size="1.778" layer="97"/>
+</instance>
+<instance part="TVS3" gate="G$1" x="172.72" y="91.44" smashed="yes">
+<attribute name="NAME" x="175.26" y="93.98" size="1.778" layer="97"/>
+<attribute name="MFG_PART_NO" x="175.26" y="91.44" size="1.778" layer="97"/>
+<attribute name="DISPLAY" x="175.26" y="88.9" size="1.778" layer="97"/>
+<attribute name="NOSTUFF" x="175.26" y="83.82" size="1.778" layer="97"/>
+</instance>
+<instance part="TVS4" gate="G$1" x="200.66" y="91.44" smashed="yes">
+<attribute name="NAME" x="203.2" y="93.98" size="1.778" layer="97"/>
+<attribute name="MFG_PART_NO" x="203.2" y="91.44" size="1.778" layer="97"/>
+<attribute name="DISPLAY" x="203.2" y="88.9" size="1.778" layer="97"/>
+<attribute name="NOSTUFF" x="203.2" y="83.82" size="1.778" layer="97"/>
 </instance>
 </instances>
 <busses>
@@ -395,45 +478,61 @@
 <segment>
 <pinref part="TP1" gate="G$1" pin="P1"/>
 <pinref part="U1" gate="G$1" pin="VCC"/>
-<wire x1="116.84" y1="109.22" x2="119.38" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="109.22" x2="93.98" y2="109.22" width="0.1524" layer="91"/>
 <label x="127" y="109.22" size="1.778" layer="95" rot="MR0"/>
 <pinref part="TP7" gate="G$1" pin="P1"/>
-<wire x1="119.38" y1="109.22" x2="129.54" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="116.84" y1="111.76" x2="119.38" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="119.38" y1="111.76" x2="119.38" y2="109.22" width="0.1524" layer="91"/>
-<junction x="119.38" y="109.22"/>
+<wire x1="93.98" y1="109.22" x2="129.54" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="111.76" x2="93.98" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="111.76" x2="93.98" y2="109.22" width="0.1524" layer="91"/>
+<junction x="93.98" y="109.22"/>
 </segment>
 </net>
 <net name="DI" class="0">
 <segment>
 <pinref part="TP2" gate="G$1" pin="P1"/>
 <pinref part="U1" gate="G$1" pin="DI"/>
-<wire x1="116.84" y1="106.68" x2="129.54" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="106.68" x2="121.92" y2="106.68" width="0.1524" layer="91"/>
 <label x="127" y="106.68" size="1.778" layer="95" rot="MR0"/>
+<pinref part="TVS2" gate="G$1" pin="K"/>
+<wire x1="121.92" y1="106.68" x2="129.54" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="93.98" x2="121.92" y2="106.68" width="0.1524" layer="91"/>
+<junction x="121.92" y="106.68"/>
 </segment>
 </net>
 <net name="CI" class="0">
 <segment>
 <pinref part="TP3" gate="G$1" pin="P1"/>
 <pinref part="U1" gate="G$1" pin="CI"/>
-<wire x1="116.84" y1="104.14" x2="129.54" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="91.44" y1="104.14" x2="93.98" y2="104.14" width="0.1524" layer="91"/>
 <label x="127" y="104.14" size="1.778" layer="95" rot="MR0"/>
+<pinref part="TVS1" gate="G$1" pin="K"/>
+<wire x1="93.98" y1="104.14" x2="129.54" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="93.98" x2="93.98" y2="104.14" width="0.1524" layer="91"/>
+<junction x="93.98" y="104.14"/>
 </segment>
 </net>
 <net name="DO" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="DO"/>
 <pinref part="TP6" gate="G$1" pin="P1"/>
-<wire x1="149.86" y1="106.68" x2="165.1" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="106.68" x2="200.66" y2="106.68" width="0.1524" layer="91"/>
 <label x="152.4" y="106.68" size="1.778" layer="95"/>
+<pinref part="TVS4" gate="G$1" pin="K"/>
+<wire x1="200.66" y1="106.68" x2="223.52" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="96.52" x2="200.66" y2="106.68" width="0.1524" layer="91"/>
+<junction x="200.66" y="106.68"/>
 </segment>
 </net>
 <net name="CO" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="CO"/>
 <pinref part="TP5" gate="G$1" pin="P1"/>
-<wire x1="149.86" y1="104.14" x2="165.1" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="104.14" x2="172.72" y2="104.14" width="0.1524" layer="91"/>
 <label x="152.4" y="104.14" size="1.778" layer="95"/>
+<pinref part="TVS3" gate="G$1" pin="K"/>
+<wire x1="172.72" y1="104.14" x2="223.52" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="96.52" x2="172.72" y2="104.14" width="0.1524" layer="91"/>
+<junction x="172.72" y="104.14"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -443,10 +542,27 @@
 <wire x1="149.86" y1="101.6" x2="162.56" y2="101.6" width="0.1524" layer="91"/>
 <label x="152.4" y="101.6" size="1.778" layer="95"/>
 <pinref part="TP8" gate="G$1" pin="P1"/>
-<wire x1="162.56" y1="101.6" x2="165.1" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="165.1" y1="99.06" x2="162.56" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="101.6" x2="223.52" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="223.52" y1="99.06" x2="162.56" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="99.06" x2="162.56" y2="101.6" width="0.1524" layer="91"/>
 <junction x="162.56" y="101.6"/>
+<pinref part="TVS2" gate="G$1" pin="A"/>
+<wire x1="121.92" y1="86.36" x2="121.92" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="83.82" x2="162.56" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="162.56" y1="83.82" x2="162.56" y2="99.06" width="0.1524" layer="91"/>
+<junction x="162.56" y="99.06"/>
+<pinref part="TVS1" gate="G$1" pin="A"/>
+<wire x1="93.98" y1="86.36" x2="93.98" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="93.98" y1="83.82" x2="121.92" y2="83.82" width="0.1524" layer="91"/>
+<junction x="121.92" y="83.82"/>
+<pinref part="TVS4" gate="G$1" pin="A"/>
+<wire x1="162.56" y1="83.82" x2="172.72" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="172.72" y1="83.82" x2="200.66" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="83.82" x2="200.66" y2="88.9" width="0.1524" layer="91"/>
+<junction x="162.56" y="83.82"/>
+<pinref part="TVS3" gate="G$1" pin="A"/>
+<wire x1="172.72" y1="88.9" x2="172.72" y2="83.82" width="0.1524" layer="91"/>
+<junction x="172.72" y="83.82"/>
 </segment>
 </net>
 </nets>

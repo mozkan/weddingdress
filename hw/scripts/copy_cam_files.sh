@@ -2,11 +2,11 @@
 
 FILENAME=$1
 
-mv $FILENAME.BOL CAM/
-mv $FILENAME.dri CAM/
-mv $FILENAME.FDR CAM/
-mv $FILENAME.GB* CAM/
-mv $FILENAME.GT* CAM/
-mv $FILENAME.GM* CAM/
-mv $FILENAME.TXT CAM/
-mv $FILENAME.gpi CAM/
+mv $FILENAME.BOL cam/
+mv $FILENAME.dri cam/
+mv $FILENAME.FDR cam/
+mv $FILENAME.GB* cam/
+mv $FILENAME.GT* cam/
+mv $FILENAME.GM* cam/
+mv $FILENAME.TXT cam/
+mv $FILENAME.gpi cam/
