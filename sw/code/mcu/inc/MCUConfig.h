@@ -45,8 +45,8 @@ enum class GPIOPins {
 };
 
 enum class SPIPeripherals {
-  kSPI0FC0 = 0,
-  kSPI1FC2
+  kSPI0 = 0,
+  kSPI1
 };
 
 // PWM outputs on this board

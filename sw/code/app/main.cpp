@@ -1,3 +1,7 @@
+#include <cstdint>
+
+#include <vector>
+
 #include "chip.h"
 
 #include "fault.h"
@@ -21,9 +25,16 @@ int main(void) {
   mcu::GPIOPin& led_string5_enable = mcu.GetGPIOPin(mcu::GPIOPins::kPIO0_12);
   mcu::GPIOPin& led_string6_enable = mcu.GetGPIOPin(mcu::GPIOPins::kPIO0_13);
 
+  mcu::SPIMaster& spi0 = mcu.GetSPIMaster(mcu::SPIPeripherals::kSPI0);
+  mcu::SPIMaster& spi1 = mcu.GetSPIMaster(mcu::SPIPeripherals::kSPI1);
+
   led_power_enable.Set();
+  led_string6_enable.Set();
+
+  std::vector<uint8_t> spi_write = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
   while(1) {
+    /*
     green_led1.Set();
     green_led2.Clear();
 
@@ -47,6 +58,10 @@ int main(void) {
     led_string6_enable.Clear();
 
     for (int i = 0; i < 600000; i++) {}
+    */
+
+    //spi0.Write(spi_write);
+    spi1.Write(spi_write);
   }
 
   return 0;

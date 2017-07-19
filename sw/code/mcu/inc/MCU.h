@@ -19,6 +19,7 @@
 #include "MCUConfig.h"
 #include "PinMux.h"
 #include "PWM16.h"
+#include "SPIMaster.h"
 #include "Timer.h"
 
 
@@ -56,6 +57,15 @@ class MCU {
    *     provided.
    */
   GPIOPin& GetGPIOPin(GPIOPins gpio_pin);
+
+  /**
+   * Accessor to provide valid SPI master ports available on this MCU.
+   *
+   * @param[in] spi_port A valid SPI master peripheral on this board.
+   *
+   * @return Reference to the SPIMaster peripheral requested.
+   */
+  SPIMaster& GetSPIMaster(SPIPeripherals spi_port);
 
 #if 0
   /**
@@ -116,6 +126,9 @@ class MCU {
   GPIOPin gpio_0_24_;
   GPIOPin gpio_0_25_;
   GPIOPin gpio_1_17_;
+
+  SPIMaster spi0_;
+  SPIMaster spi1_;
 
 #if 0
   PWM16 pwm_ct16b0_m0_;

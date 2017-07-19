@@ -10,8 +10,10 @@
 
 #include "chip.h"
 
-#include "PinMux.h"
+#include "fault.h"
 
+#include "LPCOpenCfg.h"
+#include "PinMux.h"
 
 namespace mcu {
 
@@ -21,6 +23,8 @@ namespace mcu {
 
 PinMux::PinMux() {
   Chip_GPIO_Init(LPC_GPIO);
+  ASSERT(Chip_SPI_Init(LPC_SPI0) == 0);
+  ASSERT(Chip_SPI_Init(LPC_SPI1) == 0);
 
   Chip_Clock_EnablePeriphClock(SYSCON_CLOCK_IOCON);
 
@@ -31,54 +35,97 @@ PinMux::PinMux() {
                      IOCON_GPIO_MODE |
                      IOCON_INPFILT_ON),
                     IOCON_FUNC1);
-#if 0
-  // Configure standard GPIO
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-		       IOCON_PIO1_4,
-		       IOCON_FUNC0 | IOCON_HYS_EN | IOCON_DIGMODE_EN);
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-		       IOCON_PIO1_8,
-		       IOCON_FUNC0 | IOCON_HYS_EN | IOCON_DIGMODE_EN);
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-		       IOCON_PIO1_9,
-		       IOCON_FUNC0 | IOCON_HYS_EN | IOCON_DIGMODE_EN);
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-		       IOCON_PIO2_0,
-		       IOCON_FUNC0 | IOCON_HYS_EN | IOCON_DIGMODE_EN);
 
-  // Configure column select pins (I2C pins P0_4 and P0_5 by default set to
-  // open-drain mode).
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-  		       IOCON_PIO0_3,
-  		       IOCON_FUNC0);
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-		       IOCON_PIO0_6,
-		       IOCON_FUNC0);
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-		       IOCON_PIO0_7,
-		       IOCON_FUNC0);
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-		       IOCON_PIO0_11,
-		       IOCON_FUNC1 | IOCON_DIGMODE_EN);
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-		       IOCON_PIO1_0,
-		       IOCON_FUNC1 | IOCON_DIGMODE_EN);
-  Chip_IOCON_PinMuxSet(LPC_IOCON,
-		       IOCON_PIO1_5,
-		       IOCON_FUNC0);
+  // Configure Type I GPIO (no push-pull output).
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 23,
+                    (IOCON_GPIO_MODE |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON |
+                     IOCON_STDI2C_EN),
+                    IOCON_FUNC0); // STRING1_EN.
 
-  // Configure PWMs.
-  Chip_IOCON_PinMuxSet(LPC_IOCON, IOCON_PIO0_8, IOCON_FUNC2);
-  Chip_IOCON_PinMuxSet(LPC_IOCON, IOCON_PIO0_9, IOCON_FUNC2);
-  Chip_IOCON_PinMuxSet(LPC_IOCON, IOCON_PIO1_1, IOCON_FUNC3 | IOCON_DIGMODE_EN);
-  Chip_IOCON_PinMuxSet(LPC_IOCON, IOCON_PIO1_2, IOCON_FUNC3 | IOCON_DIGMODE_EN);
-  Chip_IOCON_PinMuxSet(LPC_IOCON, IOCON_PIO1_6, IOCON_FUNC2);
-  Chip_IOCON_PinMuxSet(LPC_IOCON, IOCON_PIO1_7, IOCON_FUNC2);
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 24,
+                    (IOCON_GPIO_MODE |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON |
+                     IOCON_STDI2C_EN),
+                    IOCON_FUNC0); // STRING2_EN.
 
-  // Configure ADC.
-  Chip_IOCON_PinMuxSet(LPC_IOCON, IOCON_PIO1_10, IOCON_FUNC1);
-  Chip_IOCON_PinMuxSet(LPC_IOCON, IOCON_PIO1_11, IOCON_FUNC1);
-#endif
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 25,
+                    (IOCON_GPIO_MODE |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON |
+                     IOCON_STDI2C_EN),
+                    IOCON_FUNC0); // STRING3_EN.
+
+  // Configure Type D GPIO.
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 2,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC0); // LED_PWR_EN.
+
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 11,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC0); // STRING4_EN.
+
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 12,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC0); // STRING5_EN.
+
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 13,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC0); // STRING6_EN.
+
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 14,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC0); // GREEN_LED1.
+
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 15,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC0); // GREEN_LED2.
+
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 18,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC0); // RED_LED1.
+
+  // Configure SPI0 (FlexComm 0).
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 22,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC2); // FC0_MOSI.
+
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 20,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC2); // FC0_SCK.
+
+  // Configure SPI2 (FlexComm 2).
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 8,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC1); // FC2_MOSI.
+
+  Chip_IOCON_PinMux(LPC_IOCON, 0, 10,
+                    (IOCON_MODE_INACT |
+                     IOCON_DIGITAL_EN |
+                     IOCON_INPFILT_ON),
+                    IOCON_FUNC1); // FC2_SCK.
 }
 
 PinMux::~PinMux() { }

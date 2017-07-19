@@ -344,11 +344,13 @@ UsedLibrary="/opt/eagle-6.6.0/lbr/xilinx-xcv.lbr"
 UsedLibrary="/opt/eagle-6.6.0/lbr/zetex.lbr"
 UsedLibrary="/opt/eagle-6.6.0/lbr/zilog.lbr"
 UsedLibrary="/home/murat/msw/weddingdress/hw/lib/wedfestdress.lbr"
+UsedLibrary="/home/murat/zackees/Lumistones/Product/Fashion Glow Jewelry/Simple Pendent (PND02)/Electronics/Hardware/Common/LEDStoneLib.lbr"
+UsedLibrary="/home/murat/zackees/Lumistones/Product/Fashion Glow Jewelry/Simple Pendent (PND02)/Electronics/Hardware/Common/LEDStones.lbr"
 UsedLibrary="/home/murat/Dropbox/Projects/Light Box/hw/lib/lightbox.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="0 25 1919 1079"
+Loc="6 31 1909 1069"
 State=2
 Number=0
 

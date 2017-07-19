@@ -47,6 +47,8 @@ MCU::MCU()
     gpio_0_24_(GPIOPins::kPIO0_24, GPIOPin::GPIODirection::Output),
     gpio_0_25_(GPIOPins::kPIO0_25, GPIOPin::GPIODirection::Output),
     gpio_1_17_(GPIOPins::kPIO1_17, GPIOPin::GPIODirection::Input),
+    spi0_(SPIPeripherals::kSPI0, SPIMaster::Mode::kSPIMode3, 3000000),
+    spi1_(SPIPeripherals::kSPI1, SPIMaster::Mode::kSPIMode3, 3000000),
 #if 0
     pwm_ct16b0_m0_(PWMChannels::kCT16B0Mat0),
     pwm_ct16b0_m1_(PWMChannels::kCT16B0Mat1),
@@ -83,6 +85,16 @@ GPIOPin& MCU::GetGPIOPin(GPIOPins gpio_pin) {
   ASSERT(pin != gpio_pins_.end());
 
   return *(pin->second);
+}
+
+SPIMaster& MCU::GetSPIMaster(SPIPeripherals spi_port) {
+  if (spi_port == SPIPeripherals::kSPI0) {
+    return spi0_;
+  } else if (spi_port == SPIPeripherals::kSPI1) {
+    return spi1_;
+  } else {
+    ASSERT(false);
+  }
 }
 
 #if 0
