@@ -15,19 +15,6 @@
 namespace mcu {
 
 //
-// Type Declarations
-//
-
-namespace {
-
-struct ResourceMapping {
-  LPC_SPI_T* peripheral_base;
-};
-
-}
-
-
-//
 // Constants
 //
 
@@ -58,7 +45,7 @@ SPIMaster::SPIMaster(SPIPeripherals port, Mode mode, uint32_t frequency_hz)
 
   SPI_CFGSETUP_T spi_config;
   spi_config.master = 1;
-  spi_config.lsbFirst= 1;
+  spi_config.lsbFirst= 0;
   spi_config.mode= kLPCModes[static_cast<int>(mode)];
   Chip_SPI_ConfigureSPI(peripheral_, &spi_config);
   

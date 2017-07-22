@@ -80,7 +80,8 @@ typedef struct {
 /**
  * @brief LPC5410x IAP_ENTRY API function type
  */
-static INLINE void iap_entry(unsigned int cmd_param[5], unsigned int status_result[4])
+//static INLINE void iap_entry(unsigned int cmd_param[5], unsigned int status_result[4]) // MO: Original.
+static INLINE void iap_entry(uint32_t cmd_param[5], uint32_t status_result[4]) // MO: Fixed warning.
 {
 	((IAP_ENTRY_T) IAP_ENTRY_LOCATION)(cmd_param, status_result);
 }

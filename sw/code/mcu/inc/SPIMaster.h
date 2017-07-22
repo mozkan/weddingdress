@@ -1,5 +1,5 @@
 #ifndef SPIMASTER_H_
-#define SPIPMASTER_H_
+#define SPIMASTER_H_
 
 /**
  * @file SPIMaster.h
@@ -29,7 +29,7 @@ namespace mcu {
 
 /**
  * A SPI master peripheral. In addition to the configuration options in the
- * constructor, the peripheral is configured for LSB first operation.
+ * constructor, the peripheral is configured for MSB first operation.
  */
 class SPIMaster {
  public:
@@ -69,8 +69,8 @@ class SPIMaster {
 
  LPC_SPI_T*  peripheral_;
  SPIM_XFER_T transfer_;
- uint16_t    tx_buffer_[kFIFOSize];
- uint16_t    rx_buffer_[kFIFOSize];
+ uint8_t     tx_buffer_[kFIFOSize];
+ uint8_t     rx_buffer_[kFIFOSize];
 };
 
 } // namespace mcu
