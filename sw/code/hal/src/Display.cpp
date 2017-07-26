@@ -111,14 +111,21 @@ void Display::CopyToFrameBuffer(
 }
 
 void Display::WriteFrame(void) {
+  std::vector<uint8_t> start_of_frame(4, 0x00);
+  std::vector<uint8_t> end_of_frame(4, 0xFF);
+
   for (unsigned int string = 0; string < strings_.size(); string++) {
     strings_[string].cs.Set();
+    for (int i = 0; i < 1000; i++) { }
+
+    strings_[string].spi.Write(start_of_frame);
     strings_[string].spi.Write(frame_buffer_[string].raw_led_bytes);
-    strings_[string].cs.Clear();
+    strings_[string].spi.Write(end_of_frame);
     
     // Crude blocking delay. TODO: Set up SPI delays in peripheral config. Need
     // this to ensure appropriate deadband between switching chip selects.
-    for (int i = 0; i < 100; i++) { }
+    strings_[string].cs.Clear();
+    for (int i = 0; i < 1000; i++) { }
   }
 }
 
@@ -134,10 +141,6 @@ void Display::PlaceLEDFromContinuousString(int position,
   WriteLEDToStringBuffer(led,
                          start_offset,
                          frame_buffer_[string].raw_led_bytes);
-  //frame_buffer_[string].raw_led_bytes[start_offset]     = led.bright();
-  //frame_buffer_[string].raw_led_bytes[start_offset + 1] = led.b();
-  //frame_buffer_[string].raw_led_bytes[start_offset + 2] = led.g();
-  //frame_buffer_[string].raw_led_bytes[start_offset + 3] = led.r();
 }
 
 void Display::PlaceStringSegment(int string,
@@ -151,10 +154,6 @@ void Display::PlaceStringSegment(int string,
 
   int offset = 0;
   for (int led = 0; led < led_count; led++) {
-    //frame_buffer_[string].raw_led_bytes[offset]     = string_data[led].bright();
-    //frame_buffer_[string].raw_led_bytes[offset + 1] = string_data[led].b();
-    //frame_buffer_[string].raw_led_bytes[offset + 2] = string_data[led].g();
-    //frame_buffer_[string].raw_led_bytes[offset + 3] = string_data[led].r();
     WriteLEDToStringBuffer(string_data[led],
                            offset,
                            frame_buffer_[string].raw_led_bytes);
