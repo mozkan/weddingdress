@@ -18,7 +18,6 @@
 #include "GPIOPin.h"
 #include "MCUConfig.h"
 #include "PinMux.h"
-#include "PWM16.h"
 #include "SPIMaster.h"
 #include "Timer.h"
 
@@ -67,17 +66,6 @@ class MCU {
    */
   SPIMaster& GetSPIMaster(SPIPeripherals spi_port);
 
-#if 0
-  /**
-   * Accessor to provide valid PWM channels available on this MCU. These are the
-   * PWMs that have been pinned out onto the board.
-   *
-   * @param[in] channel A valid PWM channel on this board.
-   *
-   * @return Reference to the PWM16 corresponding to the PWM channel provided.
-   */
-  PWM16& GetPWMChannel(PWMChannels channel);
-
   /**
    * Accessor to provide valid Timer channels available on this MCU.
    *
@@ -86,7 +74,7 @@ class MCU {
    * @return Reference to the Timer corresponding to the Timer channel provided.
    */
   Timer& GetTimerChannel(TimerChannels channel);
-
+#if 0
   /**
    * Accessor to provide valid ADC channels available on this MCU.
    *
@@ -105,10 +93,6 @@ class MCU {
   static bool initialized_;
 
   void PopulateGPIOLookup(void);
-#if 0
-  void PopulateADCChannelLookup(void);
-#endif
-
   void SetCLKOUT(void);
 
   Clocking clocking_;
@@ -130,24 +114,14 @@ class MCU {
   SPIMaster spi0_;
   SPIMaster spi1_;
 
+  Timer timer0_;
+
 #if 0
-  PWM16 pwm_ct16b0_m0_;
-  PWM16 pwm_ct16b0_m1_;
-  PWM16 pwm_ct32b0_m0_;
-  PWM16 pwm_ct32b0_m1_;
-  PWM16 pwm_ct32b1_m0_;
-  PWM16 pwm_ct32b1_m1_;
-
-  Timer timer_ct16b1_;
-
   ADCChannel ad6_;
   ADCChannel ad7_;
 #endif
  
   std::map<GPIOPins, GPIOPin*> gpio_pins_;
-#if 0
-  std::map<GPIOPins, PWM16*> pwms_;
-#endif
 };
 
 } // namespace mcu

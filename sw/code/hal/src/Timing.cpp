@@ -24,19 +24,17 @@ namespace hal {
 //
 
 Timing::Timing(mcu::Timer& timer) : timer_(timer) {
-  // Configure for 1 millisecond ticks.
-  //timer_.SetPrescaler(mcu::kCPUClockHz / 1000);
+  // Set the prescaler to count 1 millisecond per tick.
+  timer_.SetPrescaler(mcu::kCPUClockHz / 1000);
 
   // Start the timer.
-  //timer_.Start();
+  timer_.Start();
 }
 
 Timing::~Timing() { }
 
-uint32_t Timing::Millis(void)
-{
-  //return timer_.GetCount() + (timer_.GetTimeouts() * 0xFFFF);
-  return 0; // Temporary
+uint32_t Timing::Millis(void) {
+  return timer_.GetCount();
 }
 
 } // namespace hal

@@ -47,16 +47,10 @@ MCU::MCU()
     gpio_0_24_(GPIOPins::kPIO0_24, GPIOPin::GPIODirection::Output),
     gpio_0_25_(GPIOPins::kPIO0_25, GPIOPin::GPIODirection::Output),
     gpio_1_17_(GPIOPins::kPIO1_17, GPIOPin::GPIODirection::Input),
-    spi0_(SPIPeripherals::kSPI0, SPIMaster::Mode::kSPIMode3, 1000000),
-    spi1_(SPIPeripherals::kSPI1, SPIMaster::Mode::kSPIMode3, 1000000),
+    spi0_(SPIPeripherals::kSPI0, SPIMaster::Mode::kSPIMode3, 4000000),
+    spi1_(SPIPeripherals::kSPI1, SPIMaster::Mode::kSPIMode3, 4000000),
+    timer0_(TimerChannels::kCTimer0),
 #if 0
-    pwm_ct16b0_m0_(PWMChannels::kCT16B0Mat0),
-    pwm_ct16b0_m1_(PWMChannels::kCT16B0Mat1),
-    pwm_ct32b0_m0_(PWMChannels::kCT32B0Mat0),
-    pwm_ct32b0_m1_(PWMChannels::kCT32B0Mat1),
-    pwm_ct32b1_m0_(PWMChannels::kCT32B1Mat0),
-    pwm_ct32b1_m1_(PWMChannels::kCT32B1Mat1),
-    timer_ct16b1_(TimerChannels::kCT16B1),
     ad6_(ADCChannels::kAD6),
     ad7_(ADCChannels::kAD7),
 #endif
@@ -97,17 +91,13 @@ SPIMaster& MCU::GetSPIMaster(SPIPeripherals spi_port) {
   }
 }
 
-#if 0
-PWM16& MCU::GetPWMChannel(PWMChannels channel) {
-  return *(pwms_[static_cast<int>(channel)]);
-}
-
 Timer& MCU::GetTimerChannel(TimerChannels channel) {
-  assert(channel == TimerChannels::kCT16B1);
+  ASSERT(channel == TimerChannels::kCTimer0);
 
-  return timer_ct16b1_;
+  return timer0_;
 }
 
+#if 0
 ADCChannel& MCU::GetADCChannel(ADCChannels channel) {
   switch (channel) {
     case ADCChannels::kAD6:
@@ -134,6 +124,7 @@ void MCU::SetCLKOUT(void) {
   Chip_Clock_SetCLKOUTSource(SYSCON_CLKOUTSRC_MAINCLK, 99);
 }
 
+// TODO: Replace with static initialization of const map.
 void MCU::PopulateGPIOLookup(void) {
   // Add pins to table.
   gpio_pins_.insert(
@@ -163,6 +154,7 @@ void MCU::PopulateGPIOLookup(void) {
 }
 
 #if 0
+// TODO: Replace with static initialization of const map.
 void MCU::ConfigureADC(void) {
   ADC_CLOCK_SETUP_T adc_setup = { ADC_MAX_SAMPLE_RATE, ADC_10BITS, false };
   Chip_ADC_Init(LPC_ADC, &adc_setup);

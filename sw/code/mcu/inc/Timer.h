@@ -13,6 +13,8 @@
 
 #include <cstdint>
 
+#include "chip.h"
+
 #include "MCUConfig.h"
 
 
@@ -28,11 +30,6 @@ namespace mcu {
  */
 class Timer {
  public:
-  enum class InterruptState {
-    kEnable = 0,
-    kDisable
-  };
-
   /**
    * Constructor for the Timer class.
    *
@@ -43,11 +40,11 @@ class Timer {
   ~Timer();
 
   /**
-   * Sets the prescaler for this timer.
+   * Sets the prescaler value for this timer.
    *
    * @return Nothing.
    */
-  void SetPrescaler(uint16_t prescaler);
+  void SetPrescaler(uint32_t prescaler);
 
   /**
    * Starts the timer.
@@ -61,33 +58,14 @@ class Timer {
    *
    * @return The current count.
    */
-  uint16_t GetCount(void);
-
-  /**
-   * Enables the interrupt on completion of a full period
-   *
-   * @return Nothing.
-   */
-  void ConfigureTimeoutInterrupt(InterruptState state);
-
-  /**
-   * Gets the number of timeouts that have occurred since the timer was started.
-   *
-   * @return The number of timeouts.
-   */
-  uint16_t GetTimeouts(void);
+  uint32_t GetCount(void);
 
   // Disallow copy and assign.
   Timer(const Timer&) = delete;
   Timer& operator=(const Timer&) = delete;
-
+ 
  private:
-#if 0
-  TimerChannels      timer_channel_;
-  LPC_TIMER_T*       timer_;
-  LPC11CXX_IRQn_Type irq_;
-  uint8_t            match_channel_;
-#endif
+  LPC_TIMER_T* timer_;
 };
 
 } // namespace mcu

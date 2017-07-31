@@ -37,7 +37,8 @@ Wedfestdress::Wedfestdress()
              mcu_.GetGPIOPin(mcu::GPIOPins::kPIO0_11),
              mcu_.GetGPIOPin(mcu::GPIOPins::kPIO0_12),
              mcu_.GetGPIOPin(mcu::GPIOPins::kPIO0_13),
-             mcu_.GetGPIOPin(mcu::GPIOPins::kPIO0_2)) {
+             mcu_.GetGPIOPin(mcu::GPIOPins::kPIO0_2)),
+     timing_(mcu_.GetTimerChannel(mcu::TimerChannels::kCTimer0)) {
   ASSERT(initialized_ == false);
   initialized_ = true;
 }
@@ -47,11 +48,12 @@ Wedfestdress::~Wedfestdress() { }
 Display& Wedfestdress::GetDisplay(void) {
   return display_;
 }
-#if 0
+
 Timing& Wedfestdress::GetTiming(void) {
   return timing_;
 }
 
+#if 0
 Microphone& Wedfestdress::GetMicrophone(void) {
   return microphone_;
 }

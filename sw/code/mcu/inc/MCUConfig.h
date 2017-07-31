@@ -49,22 +49,8 @@ enum class SPIPeripherals {
   kSPI1
 };
 
-// PWM outputs on this board
-enum class PWMChannels {
-#if 0
-  kCT16B0Mat0 = 0,
-  kCT16B0Mat1,
-  kCT32B0Mat0,
-  kCT32B0Mat1,
-  kCT32B1Mat0,
-  kCT32B1Mat1
-#endif
-};
-
 enum class TimerChannels {
-#if 0
-  kCT16B1 = 0
-#endif
+  kCTimer0 = 0
 };
 
 enum class ADCChannels {

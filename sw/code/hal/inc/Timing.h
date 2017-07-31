@@ -1,5 +1,6 @@
 #ifndef TIMING_H_
 #define TIMING_H_
+
 /**
  * @file Timing.h
  *
@@ -44,7 +45,8 @@ class Timing
   /*
    * Returns the value of a fre-running 32-bit millisecond counter.
    *
-   * @return Milliseconds since the system started operating.
+   * @return Milliseconds since the system started operating. Will roll over on
+   * timer reaching its maxumum value.
    */
   uint32_t Millis(void);
 

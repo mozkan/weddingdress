@@ -18,6 +18,7 @@
 #include "MCU.h"
 
 #include "Display.h"
+#include "Timing.h"
 
 
 namespace hal {
@@ -49,7 +50,7 @@ class Wedfestdress
    *
    * @return Reference to the Timing resource on this Wedfestdress.
    */
-  //Timing& GetTiming(void);
+  Timing& GetTiming(void);
 
   /**
    * Accessor to the system-level audio measurement resource.
@@ -84,6 +85,7 @@ class Wedfestdress
 
   // HAL classes.
   Display display_;
+  Timing  timing_;
 };
 
 } // namespace hal
