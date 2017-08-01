@@ -1,31 +1,38 @@
 #include <cstdint>
 
+#include <array>
+
 #include "Display.h"
 #include "Wedfestdress.h"
 
-#include "pattern/AlternateRampPattern.h"
+//#include "pattern/AlternateRampPattern.h"
+#include "task/Task.h"
+#include "task/PatternRunnerTask.h"
 
+
+//constexpr int kPatternRunnerTaskIntervalMs = 10; // 100 Hz. refresh rate.
+constexpr int kPatternRunnerTaskIntervalMs = 1000; // DEBUG
+
+constexpr int kTaskCount = 1;
 
 int main(void) {
+  // Initialize hardware resources.
   hal::Wedfestdress dress;
 
-  hal::Display& display = dress.GetDisplay();
+  // Create the tasks that will run in the main loop.
+  app::task::PatternRunnerTask pattern_runner(dress.GetTiming(),
+                                              dress.GetDisplay(),
+                                              kPatternRunnerTaskIntervalMs);
 
-  app::pattern::AlternateRampPattern al_pattern(display);
-  app::pattern::Pattern& pattern = al_pattern;
+  std::array<app::task::Task*, kTaskCount> tasks = {{
+    &pattern_runner
+  }};
 
-  hal::Timing& timing = dress.GetTiming();
-
-  uint32_t last_millis = timing.Millis();
-  uint32_t poll_time = timing.Millis();
-
+  // Run all tasks.
   while (1) {
-    while ((poll_time - last_millis) < 1000) {
-      poll_time = timing.Millis();
+    for (auto task : tasks) {
+      task->Run();
     }
-
-    last_millis = poll_time;
-    pattern.Update();
   }
 
   return 0;
