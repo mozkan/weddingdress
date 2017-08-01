@@ -42,6 +42,8 @@ class Display
   static constexpr int kNumberOfStrings = 6;
   static constexpr int kTotalLEDs = kLEDsPerString * kNumberOfStrings;
 
+  typedef std::array<std::vector<APA102Pixel>, kNumberOfStrings> DisplayBuffer;
+
   /**
    * Constructor for the Display class.
    *
@@ -82,8 +84,9 @@ class Display
    *     string, stored in an array of size kNumberOfStrings.
    * @return Nothing.
    */
-  void Update(const std::array<std::vector<APA102Pixel>,
-                               kNumberOfStrings>& string_data);
+  //void Update(const std::array<std::vector<APA102Pixel>,
+  //                             kNumberOfStrings>& string_data);
+  void Update(const DisplayBuffer& string_data);
 
   /**
    * Enables power to the pixel array.
