@@ -11,6 +11,8 @@
  * Wedfestdress Firmware 2017
  */
 
+#include <array>
+
 #include "Display.h"
 
 #include "Pattern.h"
@@ -25,7 +27,7 @@ namespace pattern {
 
 /**
  * Generates a pattern that ramps up even pixels while ramping down odd pixels.
- * Once the limit is reached, the ramp directions change. Does this with  white
+ * Once the limit is reached, the ramp directions change. Does this with white
  * color only right now.
  */
 class AlternateRampPattern : public Pattern {
@@ -43,9 +45,16 @@ class AlternateRampPattern : public Pattern {
   AlternateRampPattern& operator=(const AlternateRampPattern&) = delete;
 
  private:
-  virtual void CalculateNextIteration(void);
+  static const uint8_t kMinBrightness = 32;
+  static const uint8_t kMaxBrightness = 255;
 
-  uint8_t temp_;
+  virtual void CalculateNextIteration(void);
+  void UpdateEveryOtherLED(int start_led, uint8_t value);
+
+  int8_t  direction_even_;
+  int8_t  direction_odd_;
+  uint8_t even_led_value_;
+  uint8_t odd_led_value_;
 };
 
 } // namespace pattern

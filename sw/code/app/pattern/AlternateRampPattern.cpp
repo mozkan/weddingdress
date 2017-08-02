@@ -10,6 +10,10 @@
 
 #include "AlternateRampPattern.h"
 
+#include "Display.h"
+
+#include "PatternHelpers.h"
+
 
 namespace app {
 namespace pattern {
@@ -19,7 +23,11 @@ namespace pattern {
 //
 
 AlternateRampPattern::AlternateRampPattern(hal::Display& display) 
-  : Pattern(display), temp_(0) { }
+  : Pattern(display),
+    direction_even_(1),
+    direction_odd_(-1),
+    even_led_value_(kMinBrightness),
+    odd_led_value_(kMaxBrightness) { }
 
 AlternateRampPattern::~AlternateRampPattern() { }
 
@@ -29,16 +37,31 @@ AlternateRampPattern::~AlternateRampPattern() { }
 //
 
 void AlternateRampPattern::CalculateNextIteration(void) {
-  temp_++;
+  if (even_led_value_ >= kMaxBrightness) {
+    direction_even_ = -1;
+    direction_odd_ = 1;
+  } else if (even_led_value_ <= kMinBrightness) {
+    direction_even_ = 1;
+    direction_odd_ = -1;
+  }
 
-  if (temp_  & 0x01) {
-    buffer_[0][0].set_r(55);
-    buffer_[0][0].set_g(55);
-    buffer_[0][0].set_b(55);
-  } else {
-    buffer_[0][0].set_r(0);
-    buffer_[0][0].set_g(0);
-    buffer_[0][0].set_b(0);
+  even_led_value_ = Add8Sat(even_led_value_, direction_even_);
+  odd_led_value_  = Add8Sat(odd_led_value_, direction_odd_);
+
+  // Set even LEDs.
+  UpdateEveryOtherLED(0, even_led_value_);
+
+  // Set odd LEDs.
+  UpdateEveryOtherLED(1, odd_led_value_);
+}
+
+void AlternateRampPattern::UpdateEveryOtherLED(int start_led, uint8_t value) {
+  for (auto& string : buffer_) {
+    for (int led = start_led; led < hal::Display::kLEDsPerString; led += 2) {
+      string[led].set_r(value);
+      string[led].set_g(value);
+      string[led].set_b(value);
+    }
   }
 }
 

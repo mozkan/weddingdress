@@ -35,6 +35,11 @@ PatternRunnerTask::~PatternRunnerTask() {
   }
 }
 
+
+//
+// Private Member Definitions
+//
+
 void PatternRunnerTask::NextPattern(void) {
   pattern_number_++;
   if (pattern_number_ == static_cast<int>(patterns_.size())) {
@@ -42,12 +47,13 @@ void PatternRunnerTask::NextPattern(void) {
   }
 }
 
-
-//
-// Private Member Definitions
-//
-
 void PatternRunnerTask::RunTask(void) {
+  // Check button state.
+  // ...
+
+  // If button has been pressed, run next pattern.
+  // ...
+
   patterns_[pattern_number_]->Update();
 }
 

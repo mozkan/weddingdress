@@ -44,8 +44,6 @@ class PatternRunnerTask : public Task {
 
   virtual ~PatternRunnerTask();
 
-  void NextPattern(void);
-
   // Disallow copy and assign.
   PatternRunnerTask(const PatternRunnerTask&) = delete;
   PatternRunnerTask& operator=(const PatternRunnerTask&) = delete;
@@ -53,6 +51,7 @@ class PatternRunnerTask : public Task {
  private:
   static const int kPatternCount = 1;
 
+  void NextPattern(void);
   virtual void RunTask(void);
 
   int pattern_number_;

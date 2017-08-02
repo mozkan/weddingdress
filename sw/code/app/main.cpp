@@ -5,13 +5,12 @@
 #include "Display.h"
 #include "Wedfestdress.h"
 
-//#include "pattern/AlternateRampPattern.h"
+#include "pattern/PatternHelpers.h"
 #include "task/Task.h"
 #include "task/PatternRunnerTask.h"
 
 
-//constexpr int kPatternRunnerTaskIntervalMs = 10; // 100 Hz. refresh rate.
-constexpr int kPatternRunnerTaskIntervalMs = 1000; // DEBUG
+constexpr int kPatternRunnerTaskIntervalMs = 10; // 100 Hz. refresh rate.
 
 constexpr int kTaskCount = 1;
 
