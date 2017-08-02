@@ -40,5 +40,15 @@ void Pattern::Update(void) {
   display_.Update(buffer_);
 }
 
+void Pattern::Reset(void) {
+  for (auto& string : buffer_) {
+    for (auto& led : string) {
+      led.set_r(0);
+      led.set_g(0);
+      led.set_b(0);
+    }
+  }
+}
+
 } // namespace pattern
 } // namespace app

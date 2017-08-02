@@ -11,6 +11,7 @@
 #include "PatternRunnerTask.h"
 
 #include "../pattern/AlternateRampPattern.h"
+#include "../pattern/FlashyDinglerPattern.h"
 
 
 namespace app {
@@ -26,7 +27,8 @@ PatternRunnerTask::PatternRunnerTask(hal::Timing& timing,
   : Task(timing, interval_ms),
     pattern_number_(0),
     patterns_{{
-      new app::pattern::AlternateRampPattern(display)
+      //new app::pattern::AlternateRampPattern(display)
+      new app::pattern::FlashyDinglerPattern(display)
     }} { }
 
 PatternRunnerTask::~PatternRunnerTask() {

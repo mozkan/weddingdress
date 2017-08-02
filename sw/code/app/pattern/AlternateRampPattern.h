@@ -48,7 +48,7 @@ class AlternateRampPattern : public Pattern {
   static const uint8_t kMinBrightness = 32;
   static const uint8_t kMaxBrightness = 255;
 
-  virtual void CalculateNextIteration(void);
+  void CalculateNextIteration(void) override;
   void UpdateEveryOtherLED(int start_led, uint8_t value);
 
   int8_t  direction_even_;

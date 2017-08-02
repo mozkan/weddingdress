@@ -42,6 +42,12 @@ class Pattern {
    */
   void Update(void);
 
+  /**
+   *  Resets the pattern state. By default this clears the display buffer.
+   *  Specializations can optionally override to do something more.
+   */
+  virtual void Reset(void);
+
   // Disallow copy and assign.
   Pattern(const Pattern&) = delete;
   Pattern& operator=(const Pattern&) = delete;
