@@ -17,6 +17,7 @@
 
 #include "MCU.h"
 
+#include "Button.h"
 #include "Display.h"
 #include "Timing.h"
 
@@ -53,18 +54,18 @@ class Wedfestdress
   Timing& GetTiming(void);
 
   /**
+   * Accessor to the system-level user button resource.
+   *
+   * @return Reference to the (user)Button resource on this Wedfestdress.
+   */
+  Button& GetUserButton(void);
+
+  /**
    * Accessor to the system-level audio measurement resource.
    *
    * @return Reference to the Microphone resource on this Wedfestdress.
    */
   //Microphone& GetMicrophone(void);
-
-  /**
-   * Accessor to the system-level user input resource.
-   *
-   * @return Reference to the UserInput resource on this Wedfestdress.
-   */
-  //UserInput& GetUserInput(void);
 
   /**
    * Accessor to the system-level battery resource.
@@ -86,6 +87,7 @@ class Wedfestdress
   // HAL classes.
   Display display_;
   Timing  timing_;
+  Button  user_button_;
 };
 
 } // namespace hal

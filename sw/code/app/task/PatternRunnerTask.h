@@ -15,6 +15,7 @@
 
 #include <array>
 
+#include "Button.h"
 #include "Display.h"
 #include "Timing.h"
 
@@ -39,8 +40,9 @@ class PatternRunnerTask : public Task {
    * Constructor for the PatternRunnerTask class.
    */
   PatternRunnerTask(hal::Timing& timing,
+                    uint32_t interval_ms,
                     hal::Display& display,
-                    uint32_t interval_ms);
+                    hal::Button::ReadValue& user_button_value);
 
   virtual ~PatternRunnerTask();
 
@@ -49,13 +51,14 @@ class PatternRunnerTask : public Task {
   PatternRunnerTask& operator=(const PatternRunnerTask&) = delete;
 
  private:
-  static const int kPatternCount = 1;
+  static const int kPatternCount = 2;
 
   void NextPattern(void);
-  virtual void RunTask(void);
+  void RunTask(void) override;
 
   int pattern_number_;
   const std::array<app::pattern::Pattern*, kPatternCount> patterns_;
+  hal::Button::ReadValue& user_button_value_;
 };
 
 } // namespace task

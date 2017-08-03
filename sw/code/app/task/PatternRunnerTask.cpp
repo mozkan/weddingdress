@@ -22,14 +22,16 @@ namespace task {
 //
 
 PatternRunnerTask::PatternRunnerTask(hal::Timing& timing,
+                                     uint32_t interval_ms,
                                      hal::Display& display,
-                                     uint32_t interval_ms) 
+                                     hal::Button::ReadValue& user_button_value)
   : Task(timing, interval_ms),
     pattern_number_(0),
     patterns_{{
-      //new app::pattern::AlternateRampPattern(display)
-      new app::pattern::FlashyDinglerPattern(display)
-    }} { }
+      new app::pattern::FlashyDinglerPattern(display),
+      new app::pattern::AlternateRampPattern(display)
+    }},
+    user_button_value_(user_button_value) { }
 
 PatternRunnerTask::~PatternRunnerTask() {
   for (auto pattern : patterns_) {
@@ -51,10 +53,12 @@ void PatternRunnerTask::NextPattern(void) {
 
 void PatternRunnerTask::RunTask(void) {
   // Check button state.
-  // ...
+  if (user_button_value_ == hal::Button::ReadValue::kShortPress) {
+    // Reset the flag.
+    user_button_value_ = hal::Button::ReadValue::kNoPress;
 
-  // If button has been pressed, run next pattern.
-  // ...
+    NextPattern();
+  }
 
   patterns_[pattern_number_]->Update();
 }

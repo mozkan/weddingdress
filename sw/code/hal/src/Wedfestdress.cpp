@@ -38,7 +38,8 @@ Wedfestdress::Wedfestdress()
              mcu_.GetGPIOPin(mcu::GPIOPins::kPIO0_12),
              mcu_.GetGPIOPin(mcu::GPIOPins::kPIO0_13),
              mcu_.GetGPIOPin(mcu::GPIOPins::kPIO0_2)),
-     timing_(mcu_.GetTimerChannel(mcu::TimerChannels::kCTimer0)) {
+     timing_(mcu_.GetTimerChannel(mcu::TimerChannels::kCTimer0)),
+     user_button_(mcu_.GetGPIOPin(mcu::GPIOPins::kPIO1_17), timing_) {
   ASSERT(initialized_ == false);
   initialized_ = true;
 }
@@ -53,13 +54,13 @@ Timing& Wedfestdress::GetTiming(void) {
   return timing_;
 }
 
+Button& Wedfestdress::GetUserButton(void) {
+  return user_button_;
+}
+
 #if 0
 Microphone& Wedfestdress::GetMicrophone(void) {
   return microphone_;
-}
-
-UserInput& Wedfestdress::GetUserInput(void) {
-  return user_input_;
 }
 
 Battery& Wedfestdress::GetBattery(void) {

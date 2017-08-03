@@ -47,8 +47,8 @@ MCU::MCU()
     gpio_0_24_(GPIOPins::kPIO0_24, GPIOPin::GPIODirection::Output),
     gpio_0_25_(GPIOPins::kPIO0_25, GPIOPin::GPIODirection::Output),
     gpio_1_17_(GPIOPins::kPIO1_17, GPIOPin::GPIODirection::Input),
-    spi0_(SPIPeripherals::kSPI0, SPIMaster::Mode::kSPIMode3, 4000000),
-    spi1_(SPIPeripherals::kSPI1, SPIMaster::Mode::kSPIMode3, 4000000),
+    spi0_(SPIPeripherals::kSPI0, SPIMaster::Mode::kSPIMode3, 1000000),
+    spi1_(SPIPeripherals::kSPI1, SPIMaster::Mode::kSPIMode3, 1000000),
     timer0_(TimerChannels::kCTimer0),
 #if 0
     ad6_(ADCChannels::kAD6),
