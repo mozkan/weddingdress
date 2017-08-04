@@ -37,8 +37,7 @@ void SetNewLimits(uint8_t* lim_high, uint8_t* lim_low);
 constexpr uint8_t kRampStartBrightness = 20;
 constexpr uint8_t kMaxBrightness       = 255;
 constexpr uint8_t kMaxRampRate         = 10;
-constexpr uint8_t kMaxLimitDistance    = kMaxBrightness / 2;
-constexpr uint8_t kTwinkleMidpoint     = kMaxBrightness / 2;
+constexpr uint8_t kMaxLimitDistance    = 50;
 
 } // namespace
 
@@ -134,7 +133,7 @@ void FlashyDinglerPattern::StateRampUp(void) {
 
   if (pattern_data_[0][0].r == kMaxBrightness) {
     NextState();
-    NextState(); // DEBUG
+    NextState(); // Skip the cooldown state for now.
   }
 }
 
@@ -248,9 +247,10 @@ void UpdateFadeDownwards(uint8_t  brightness,
 }
 
 void SetNewLimits(uint8_t* lim_high, uint8_t* lim_low) {
-  *lim_low = Sub8Sat(kTwinkleMidpoint,
+  uint8_t midpoint = ((*lim_high - *lim_low) / 2) + *lim_low;
+  *lim_low = Sub8Sat(midpoint,
                      static_cast<uint8_t>(rand() % kMaxLimitDistance));
-  *lim_high = Add8Sat(kTwinkleMidpoint,
+  *lim_high = Add8Sat(midpoint,
                       static_cast<uint8_t>(rand() % kMaxLimitDistance));
 }
 

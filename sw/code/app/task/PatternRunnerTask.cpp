@@ -49,6 +49,8 @@ void PatternRunnerTask::NextPattern(void) {
   if (pattern_number_ == static_cast<int>(patterns_.size())) {
     pattern_number_ = 0;
   }
+
+  patterns_[pattern_number_]->Reset();
 }
 
 void PatternRunnerTask::RunTask(void) {
