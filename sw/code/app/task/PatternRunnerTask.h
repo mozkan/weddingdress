@@ -51,7 +51,7 @@ class PatternRunnerTask : public Task {
   PatternRunnerTask& operator=(const PatternRunnerTask&) = delete;
 
  private:
-  static const int kPatternCount = 2;
+  static const int kPatternCount = 3;
 
   void NextPattern(void);
   void RunTask(void) override;

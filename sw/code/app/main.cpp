@@ -43,8 +43,8 @@ int main(void) {
 
   // Temporary for wedding. Wait until button is pressed before running the
   // first pattern. Will press when we kiss after the ceremony.
-  hal::Button& user_button = dress.GetUserButton();
-  while (user_button.Read() == hal::Button::ReadValue::kNoPress) { }
+  //hal::Button& user_button = dress.GetUserButton();
+  //while (user_button.Read() == hal::Button::ReadValue::kNoPress) { }
   // End temporary wedding.
 
   // Run all tasks.

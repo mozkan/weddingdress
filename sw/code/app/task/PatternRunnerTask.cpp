@@ -17,6 +17,17 @@
 namespace app {
 namespace task {
 
+// TEMP
+class AllDarkPattern : public app::pattern::Pattern {
+ public:
+  AllDarkPattern(hal::Display& display) : app::pattern::Pattern(display) { }
+  ~AllDarkPattern() { }
+
+ private:
+  void CalculateNextIteration(void) override { }
+};
+// END TEMP
+
 //
 // PatternRunnerTask Public Member Definitions
 //
@@ -28,8 +39,9 @@ PatternRunnerTask::PatternRunnerTask(hal::Timing& timing,
   : Task(timing, interval_ms),
     pattern_number_(0),
     patterns_{{
+      new AllDarkPattern(display),
       new app::pattern::FlashyDinglerPattern(display),
-      new app::pattern::AlternateRampPattern(display)
+      new app::pattern::AlternateRampPattern(display),
     }},
     user_button_value_(user_button_value) { }
 
